@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         * {
@@ -71,6 +72,11 @@
     </section>
     <!-- Banner Part -->
     <!-- Categories Part -->
+ <div id="spinner" class="hidden">
+    <div class="flex justify-center items-center py-10 ">
+        <span class="loading loading-spinner loading-xl "></span>
+    </div>
+ </div>
     <section class="bg-[#F0FDF4] py-10">
         <div class="max-w-[1440px] mx-auto">
             <h2 class="font-semibold text-[25px] text-[#1F2937] text-center pb-4">
@@ -86,31 +92,29 @@
                     </div>
                 </div>
                 <div class="col-span-8">
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="bg-white p-4 space-y-3 rounded-md">
-                            <img src="./assets/pexels-atccommphoto-306763.jpg" alt="">
-                            <h4 class="font-semibold text-[14px] text-[#1F2937]">
-                                Mango Tree
-                            </h4>
-                            <p class="font-regular text-[12px] text-[#1F2937]">
-                                A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its
-                                dense green
-                            </p>
-                            <div class="flex justify-between">
-                                <p class="bg-[#DCFCE7] py-1 px-3 rounded-3xl font-medium text-[14px] text-[#15803D]">
-                                    Fruit Tree
-                                </p>
-                                <p class="font-semibold text-[14px] text-[#1F2937]">
-                                    ৳500
-                                </p>
-                            </div>
-                            <button class="bg-[#15803D] w-[100%] py-2 rounded-3xl font-medium text-[16px] text-white">
-                                Add To Cart
-                            </button>
-                        </div>
+                    <div id="plant-card" class="grid grid-cols-3 gap-4">
                     </div>
+                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                        <div class="modal-box space-y-4">
+                            <h4 id="modal-name" class="font-semibold text-lg text-[#1F2937]"></h4>
+                            <img id="modal-image" class="w-full h-70 object-cover mx-auto rounded" />
+                            <h3 id="modal-title" class="text-lg font-bold"></h3>
+                            <h3 id="modal-price" class="text-lg font-bold"></h3>
+                            <p id="modal-desc" class="text-gray-600"></p>
+                            <div class="modal-action">
+                                <form method="dialog">
+                                    <button class="btn">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
                 </div>
-                <div class="col-span-2 bg-white p-4">sh</div>
+                <div class="col-span-2 bg-white p-4">
+                    <h3 class="font-semibold text-[20px] text-[#000000]">
+                        Your Cart
+                    </h3>
+                    <div id="card-container" class=""></div>
+                </div>
             </div>
         </div>
     </section>
@@ -189,16 +193,17 @@
                 Plant a Tree Today
             </h2>
             <div class="bg-[#15803D] p-8 w-[500px] mx-auto text-center rounded-md space-y-4 shadow-lg">
-                <input class="bg-white rounded-md py-1.5 w-[100%] pl-4" placeholder="Your Name" type="text" name="text" id="text"><br>
-                <input class="bg-white rounded-md py-1.5 w-[100%] pl-4" placeholder="Your Email Address" type="email" name="email" id="email">
+                <input class="bg-white rounded-md py-1.5 w-[100%] pl-4" placeholder="Your Name" type="text" name="text"
+                    id="text"><br>
+                <input class="bg-white rounded-md py-1.5 w-[100%] pl-4" placeholder="Your Email Address" type="email"
+                    name="email" id="email">
                 <div class="flex justify-center">
                     <select id="country" name="country"
                         class="block w-[100%] rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-700 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
                         <option value="">Number of Trees</option>
-                        <option value="bd">Bangladesh</option>
-                        <option value="in">India</option>
-                        <option value="us">United States</option>
-                        <option value="uk">United Kingdom</option>
+                        <option value="bd">1 Tree - $5</option>
+                        <option value="in">5 Trees - $25</option>
+                        <option value="us">10 Trees - $50</option>
                     </select>
                 </div>
                 <button class="bg-[#FACC15] w-[100%] py-2 rounded-3xl font-medium text-[16px] text-[#15803D]">
